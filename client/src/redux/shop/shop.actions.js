@@ -19,6 +19,20 @@ export const fetchCollectionsFailure = errorMessage => ({
 	payload: errorMessage
 });
 
+export const syncCollectionsStart = () => ({
+	type: ShopActionTypes.SYNC_COLLECTIONS_START
+});
+
+export const syncCollectionsSuccess = collectionsMap => ({
+	type: ShopActionTypes.SYNC_COLLECTIONS_SUCCESS,
+	payload: collectionsMap
+});
+
+export const syncCollectionsFailure = errorMessage => ({
+	type: ShopActionTypes.SYNC_COLLECTIONS_FAILURE,
+	payload: errorMessage
+});
+
 // redundant - TODO: double check
 export const fetchCollectionsStartAsync = () => {
 	return dispatch => {

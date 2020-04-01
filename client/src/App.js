@@ -24,6 +24,7 @@ const SignInAndSignUpPage = lazy(() =>
 	import("./pages/sign-in-and-sign-up/sign-in-and-sign-up.component")
 );
 const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"));
+const SyncPage = lazy(() => import("./pages/sync/sync"));
 
 //------------------------------------------------------------------------------
 
@@ -75,6 +76,7 @@ const App = ({ checkUserSession, currentUser, fetchCollectionsStart }) => {
 
 						{/**************** REST ****************/}
 						<Route exact path="/checkout" component={CheckoutPage} />
+						<Route exact path="/sync" component={SyncPage} />
 						<Route
 							exact
 							path="/signin"

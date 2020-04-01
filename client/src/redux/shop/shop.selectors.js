@@ -31,3 +31,8 @@ export const selectProduct = productId =>
 	createSelector([selectCollectionAll], collection =>
 		collection.items.find(item => item.id === productId)
 	);
+
+export const selectIsSyncSuccess = createSelector(
+	[selectShop],
+	shop => shop.isSyncSuccess
+);
