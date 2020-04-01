@@ -1,70 +1,26 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { combineReducers, createStore } from 'redux';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { shallow } from 'enzyme';
 
-import { ShopPage } from './shop.component';
+import { CollectionPage } from './collection.component';
+import CollectionItem from '../../components/collection-item/collection-item.component';
 
-export const createMockStore = ({ state, reducers }) => {
-  const store = createStore(combineReducers(reducers), state);
-  return {
-    ...store,
-    persistor: {
-      persist: () => null
-    }
-  };
-};
-
-describe('ShopPage', () => {
+describe('CollectionPage', () => {
   let wrapper;
-  let mockFetchCollectionsStart;
-  let store;
-
+  let mockItems = [{ id: 1 }, { id: 2 }, { id: 3 }];
   beforeEach(() => {
-    const mockReducer = (
-      state = {
-        isFetching: true
-      },
-      action
-    ) => state;
-
-    const mockState = {
-      shop: {
-        isFetching: true
-      }
+    const mockCollection = {
+      items: mockItems,
+      title: 'Test'
     };
 
-    mockFetchCollectionsStart = jest.fn();
-
-    store = createMockStore({
-      state: mockState,
-      reducers: { shop: mockReducer }
-    });
-
-    const mockMatch = {
-      path: ''
-    };
-
-    const mockProps = {
-      match: mockMatch,
-      fetchCollectionsStart: mockFetchCollectionsStart
-    };
-
-    wrapper = mount(
-      <BrowserRouter>
-        <Provider store={store}>
-          <ShopPage {...mockProps} />
-        </Provider>
-      </BrowserRouter>
-    );
+    wrapper = shallow(<CollectionPage collection={mockCollection} />);
   });
 
-  it('should render ShopPage component', () => {
+  it('should render the CollectionPage component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render ShopPage component', () => {
-    expect(mockFetchCollectionsStart).toHaveBeenCalled();
+  it('should render the same number of CollectionItems as collection array', () => {
+    expect(wrapper.find(CollectionItem).length).toBe(mockItems.length);
   });
 });

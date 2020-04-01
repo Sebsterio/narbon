@@ -1,12 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-// import { selectProduct } from '../../redux/shop/product.selectors';
+import { selectProduct } from "../../redux/shop/shop.selectors";
 
-// import // CollectionPageContainer,
-// // CollectionTitle,
-// // CollectionItemsContainer
-// "./collection.styles";
+import {} from "./product.styles";
 
 export const ProductPage = ({ product }) => {
 	const { name, color, customColor, description, id, imageUrl, type } = product;
@@ -24,16 +21,7 @@ export const ProductPage = ({ product }) => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-	product: {
-		name: "name",
-		color: "color",
-		customColor: "customColor",
-		description: "description",
-		id: "id",
-		imageUrl: "imageUrl",
-		type: "type"
-	}
-	// product: selectProduct(ownProps.match.params.collectionId)(state)
+	product: selectProduct(ownProps.match.params.productId)(state)
 });
 
 export default connect(mapStateToProps)(ProductPage);

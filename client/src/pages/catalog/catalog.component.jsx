@@ -1,41 +1,33 @@
-import React, { useEffect, lazy, Suspense } from "react";
-import { Route, Redirect } from "react-router-dom";
+import React from "react";
 import { connect } from "react-redux";
 
-import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
+import CollectionItem from "../../components/collection-item/collection-item.component";
 
-import Spinner from "../../components/spinner/spinner.component";
+import { selectCollection } from "../../redux/shop/shop.selectors";
 
-import { CatalogPageContainer } from "./catalog.styles";
+import {
+	CollectionPageContainer,
+	CollectionTitle,
+	CollectionItemsContainer
+} from "./catalog.styles";
 
-const CollectionPageContainer = lazy(() =>
-	import("../collection/collection.container")
-);
-
-export const CatalogPage = ({ fetchCollectionsStart, match }) => {
-	useEffect(() => {
-		fetchCollectionsStart();
-	}, [fetchCollectionsStart]);
-
+export const CatalogPage = ({ collection }) => {
+	let { items, title } = collection;
+	if (title == "all") title = "Catalog";
 	return (
-		<CatalogPageContainer>
-			<Suspense fallback={<Spinner />}>
-				<Route
-					exact
-					path={`${match.path}`}
-					render={() => <Redirect to={`${match.path}/all`} />}
-				/>
-				<Route
-					path={`${match.path}/:collectionId`}
-					component={CollectionPageContainer}
-				/>
-			</Suspense>
-		</CatalogPageContainer>
+		<CollectionPageContainer>
+			<CollectionTitle>{title}</CollectionTitle>
+			<CollectionItemsContainer>
+				{items.map(item => (
+					<CollectionItem key={item.id} item={item} />
+				))}
+			</CollectionItemsContainer>
+		</CollectionPageContainer>
 	);
 };
 
-const mapDispatchToProps = dispatch => ({
-	fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
+const mapStateToProps = (state, ownProps) => ({
+	collection: selectCollection(ownProps.match.params.collectionId)(state)
 });
 
-export default connect(null, mapDispatchToProps)(CatalogPage);
+export default connect(mapStateToProps)(CatalogPage);

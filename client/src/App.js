@@ -9,10 +9,16 @@ import ErrorBoundary from "./components/error-boundary/error-boundary.component"
 
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
+import { fetchCollectionsStart } from "./redux/shop/shop.actions";
 
 import { GlobalStyle } from "./global.styles";
 
-const CatalogPage = lazy(() => import("./pages/catalog/catalog.component"));
+const CollectionPageContainer = lazy(() =>
+	import("./pages/catalog/catalog.container")
+);
+const ProductPageContainer = lazy(() =>
+	import("./pages/product/product.container")
+);
 const SignInAndSignUpPage = lazy(() =>
 	import("./pages/sign-in-and-sign-up/sign-in-and-sign-up.component")
 );
@@ -20,12 +26,17 @@ const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"));
 
 //------------------------------------------------------------------------------
 
-/* Renders Spinner when chunk is fetching
- * Triggers user auth on mount */
-const App = ({ checkUserSession, currentUser }) => {
+/* Triggers user auth onMount
+ * Triggers catalog data fetch onMount
+ * Renders Spinner when chunk is fetching */
+const App = ({ checkUserSession, currentUser, fetchCollectionsStart }) => {
 	useEffect(() => {
 		checkUserSession();
 	}, [checkUserSession]);
+
+	useEffect(() => {
+		fetchCollectionsStart();
+	}, [fetchCollectionsStart]);
 
 	return (
 		<div>
@@ -34,13 +45,34 @@ const App = ({ checkUserSession, currentUser }) => {
 			<Switch>
 				<ErrorBoundary>
 					<Suspense fallback={<Spinner />}>
+						{/*************** CATALOG ***************/}
 						<Route
 							exact
 							path="/"
 							render={() => <Redirect to="/catalog/all" />}
 						/>
-						<Route path="/catalog" component={CatalogPage} />
-						{/* <Route path="/product" component={ProductPage} /> */}
+						<Route
+							exact
+							path="/catalog"
+							render={() => <Redirect to="/catalog/all" />}
+						/>
+						<Route
+							path="/catalog/:collectionId"
+							component={CollectionPageContainer}
+						/>
+
+						{/*************** PRODUCT ***************/}
+						<Route
+							exact
+							path="/product"
+							render={() => <Redirect to="/catalog/all" />}
+						/>
+						<Route
+							path="/product/:productId"
+							component={ProductPageContainer}
+						/>
+
+						{/**************** REST ****************/}
 						<Route exact path="/checkout" component={CheckoutPage} />
 						<Route
 							exact
@@ -62,7 +94,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-	checkUserSession: () => dispatch(checkUserSession())
+	checkUserSession: () => dispatch(checkUserSession()),
+	fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
