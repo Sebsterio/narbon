@@ -5,7 +5,8 @@ import { createStructuredSelector } from "reselect";
 
 import Header from "./components/header/header.component";
 import Spinner from "./components/spinner/spinner.component";
-import ErrorBoundary from "./components/error-boundary/error-boundary.component";
+import ErrorBoundary from "./components/error/error-boundary.component";
+import PageNotFound from "./components/error/page-not-found";
 
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
@@ -42,9 +43,9 @@ const App = ({ checkUserSession, currentUser, fetchCollectionsStart }) => {
 		<div>
 			<GlobalStyle />
 			<Header />
-			<Switch>
-				<ErrorBoundary>
-					<Suspense fallback={<Spinner />}>
+			<ErrorBoundary>
+				<Suspense fallback={<Spinner />}>
+					<Switch>
 						{/*************** CATALOG ***************/}
 						<Route
 							exact
@@ -81,10 +82,10 @@ const App = ({ checkUserSession, currentUser, fetchCollectionsStart }) => {
 								currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
 							}
 						/>
-						{/* <Redirect to="/404" /> */}
-					</Suspense>
-				</ErrorBoundary>
-			</Switch>
+						<Route render={PageNotFound} />
+					</Switch>
+				</Suspense>
+			</ErrorBoundary>
 		</div>
 	);
 };
