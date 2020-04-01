@@ -15,7 +15,7 @@ export const HeaderContainer = styled.div`
 	}
 `;
 
-export const LogoContainer = styled(Link)`
+export const LogoContainer = styled.a`
 	height: 100%;
 	width: 70px;
 

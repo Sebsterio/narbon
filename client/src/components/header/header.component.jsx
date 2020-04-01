@@ -19,7 +19,7 @@ import {
 
 export const Header = ({ currentUser, hidden, signOutStart }) => (
 	<HeaderContainer>
-		<LogoContainer to="/">
+		<LogoContainer href="https://www.narbonpatricia.com/">
 			<img alt="Narbon logo" src={logo} className="logo" />
 		</LogoContainer>
 		<OptionsContainer>
