@@ -41,7 +41,7 @@ const App = ({ checkUserSession, currentUser, fetchCollectionsStart }) => {
 	}, [fetchCollectionsStart]);
 
 	return (
-		<div>
+		<div className="app">
 			<GlobalStyle />
 			<Header />
 			<ErrorBoundary>

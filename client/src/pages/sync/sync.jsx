@@ -4,12 +4,16 @@ import { connect } from "react-redux";
 import { syncCollectionsStart } from "../../redux/shop/shop.actions";
 import { selectIsSyncSuccess } from "../../redux/shop/shop.selectors";
 
+import { SyncText } from "./sync.styles";
+
 export const SyncPage = ({ syncCollectionsStart, isSyncSuccess }) => {
 	useEffect(() => {
 		syncCollectionsStart();
 	}, [syncCollectionsStart]);
 
-	return <div> {isSyncSuccess ? "Sync succesful" : "Syncing..."} </div>;
+	return (
+		<SyncText>{isSyncSuccess ? "Sync succesful" : "Syncing..."} </SyncText>
+	);
 };
 
 const mapStateToProps = state => ({
