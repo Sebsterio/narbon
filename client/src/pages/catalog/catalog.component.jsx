@@ -39,8 +39,9 @@ class CatalogPage extends React.Component {
 		this.loadPixOnScroll();
 	}
 
+	// TODO: remove event listener
 	loadPixOnScroll = () => {
-		if (this.state.allPicsLoaded || !isScrollNearBottom(300)) return;
+		if (this.state.allPicsLoaded || !isScrollNearBottom(600)) return;
 		this.setState({ visibleCount: this.state.visibleCount + 1 }, () => {
 			if (this.state.visibleCount >= this.props.collection.items.length)
 				this.setState({ allPicsLoaded: true });
