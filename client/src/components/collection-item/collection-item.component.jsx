@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import {
 	CollectionItemContainer,
@@ -9,16 +9,21 @@ import {
 	PriceContainer
 } from "./collection-item.styles";
 
-export const CollectionItem = ({ item }) => {
+export const CollectionItem = ({ item }, visible) => {
 	const { id, name, price, thumbUrl, type, color } = item;
+
+	if (!visible) return null;
+
 	return (
 		<CollectionItemContainer>
-			<ImageLink to={`/product/${id}`} className="image" imageUrl={thumbUrl} />
+			<Link to={`/product/${id}`} className="link">
+				<ImageLink className="image" imageUrl={thumbUrl} />
+			</Link>
 			<CollectionFooterContainer>
 				<NameContainer>
-					<div className="name">{name}</div>
-					<div className="type">{type}</div>
-					<div className="color">{color}</div>
+					<span className="name">{name}</span>
+					<span className="type">{type}</span>
+					<span className="color">{color}</span>
 				</NameContainer>
 				<PriceContainer>&euro;{price}</PriceContainer>
 			</CollectionFooterContainer>

@@ -11,20 +11,57 @@ import {
 	CollectionItemsContainer
 } from "./catalog.styles";
 
-export const CatalogPage = ({ collection }) => {
-	let { items, title } = collection;
-	if (title == "all") title = "";
-	return (
-		<CollectionPageContainer>
-			<CollectionTitle>{title}</CollectionTitle>
-			<CollectionItemsContainer>
-				{items.map(item => (
-					<CollectionItem key={item.id} item={item} />
-				))}
-			</CollectionItemsContainer>
-		</CollectionPageContainer>
+const isScrollNearBottom = (threshold = 0) => {
+	const D = document;
+	const docHeight = Math.max(
+		D.body.scrollHeight,
+		D.body.offsetHeight,
+		D.body.clientHeight
 	);
+	return window.scrollY + window.innerHeight + threshold >= docHeight - 1;
 };
+
+// ----------------------------------------------------------------------------
+
+class CatalogPage extends React.Component {
+	// useState is buggy with event listener; useRef doesn't casue rerender
+	state = {
+		visibleCount: 1
+	};
+
+	componentDidMount() {
+		window.addEventListener("scroll", this.loadPixOnScroll);
+		this.loadPixOnScroll();
+	}
+
+	componentDidUpdate() {
+		this.loadPixOnScroll();
+	}
+
+	loadPixOnScroll = () => {
+		if (isScrollNearBottom(300))
+			this.setState({ visibleCount: this.state.visibleCount + 1 });
+	};
+
+	render() {
+		let { items, title } = this.props.collection;
+		const { visibleCount } = this.state;
+		if (title == "all") title = "";
+
+		return (
+			<CollectionPageContainer>
+				<CollectionTitle>{title}</CollectionTitle>
+				<CollectionItemsContainer>
+					{items.map((item, i) =>
+						i > visibleCount ? null : (
+							<CollectionItem key={item.id} item={item} />
+						)
+					)}
+				</CollectionItemsContainer>
+			</CollectionPageContainer>
+		);
+	}
+}
 
 const mapStateToProps = (state, ownProps) => ({
 	collection: selectCollection(ownProps.match.params.collectionId)(state)

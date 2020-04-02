@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const CollectionItemContainer = styled.div`
 	width: 80vw;
@@ -29,10 +28,16 @@ export const CollectionItemContainer = styled.div`
 		width: 22vw;
 		height: 35.2vw;
 	}
+
+	a {
+		width: 100%;
+		height: 100%;
+	}
 `;
 
-export const ImageLink = styled(Link)`
+export const ImageLink = styled.div`
 	width: 100%;
+	height: 100%;
 	background-size: cover;
 	background-position: center;
 	background-image: ${({ imageUrl }) => `url(${imageUrl})`};
@@ -52,6 +57,10 @@ CollectionFooterContainer.displayName = "CollectionFooterContainer";
 
 export const NameContainer = styled.span`
 	width: 70%;
+
+	span {
+		display: block;
+	}
 
 	.name {
 		font-size: 13px;
