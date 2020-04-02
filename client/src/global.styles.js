@@ -2,8 +2,8 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 	body {
-		font-family: 'Open Sans Condensed';
 		height: 100vh;
+		font-family: "Josefin Sans", "Open Sans", "Helvetica Neue", "Helvetica", "sans-serif";
 	}
 
 	a {

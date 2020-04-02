@@ -13,7 +13,7 @@ import {
 
 export const CatalogPage = ({ collection }) => {
 	let { items, title } = collection;
-	if (title == "all") title = "Catalog";
+	if (title == "all") title = "";
 	return (
 		<CollectionPageContainer>
 			<CollectionTitle>{title}</CollectionTitle>
