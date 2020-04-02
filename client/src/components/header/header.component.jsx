@@ -12,6 +12,7 @@ import logo from "../../assets/narbon_logo_transparent.png";
 
 import {
 	HeaderContainer,
+	HeaderWrap,
 	LogoContainer,
 	OptionsContainer,
 	OptionLink
@@ -19,22 +20,24 @@ import {
 
 export const Header = ({ currentUser, hidden, signOutStart }) => (
 	<HeaderContainer>
-		<LogoContainer href="https://www.narbonpatricia.com/">
-			<img alt="Narbon logo" src={logo} className="logo" />
-		</LogoContainer>
-		<OptionsContainer>
-			{/* TODO: render only on garment page */}
-			<OptionLink to="/catalog">CATALOG</OptionLink>
-			{currentUser ? (
-				<OptionLink as="div" onClick={signOutStart}>
-					SIGN OUT
-				</OptionLink>
-			) : (
-				<OptionLink to="/signin">SIGN IN</OptionLink>
-			)}
-			<CartIcon />
-		</OptionsContainer>
-		{hidden ? null : <CartDropdown />}
+		<HeaderWrap>
+			<LogoContainer href="https://www.narbonpatricia.com/">
+				<img alt="Narbon logo" src={logo} className="logo" />
+			</LogoContainer>
+			<OptionsContainer>
+				{/* TODO: render only on garment page OR NavLink - underline when current */}
+				<OptionLink to="/catalog">SHOP</OptionLink>
+				{currentUser ? (
+					<OptionLink as="div" onClick={signOutStart}>
+						SIGN OUT
+					</OptionLink>
+				) : (
+					<OptionLink to="/signin">SIGN IN</OptionLink>
+				)}
+				<CartIcon />
+			</OptionsContainer>
+			{hidden ? null : <CartDropdown />}
+		</HeaderWrap>
 	</HeaderContainer>
 );
 

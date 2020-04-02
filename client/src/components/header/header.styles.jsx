@@ -2,22 +2,41 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const HeaderContainer = styled.div`
-	height: 70px;
+	z-index: 9999;
+	background-color: white;
+	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 25px;
+	height: 60px;
 
-	@media screen and (max-width: 800px) {
-		height: 60px;
-		padding: 10px;
-		margin-bottom: 20px;
+	@media screen and (min-width: 800px) {
+		height: 100px;
+	}
+`;
+
+export const HeaderWrap = styled.div`
+	height: 100%;
+	max-width: 1200px;
+	margin: auto;
+	padding: 0 6px;
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+
+	@media screen and (min-width: 800px) {
+		padding: 0 20px;
+	}
+
+	@media screen and (min-width: 1200px) {
+		padding: 0;
 	}
 `;
 
 export const LogoContainer = styled.a`
-	height: 100%;
 	width: 70px;
+	display: grid;
+	align-items: center;
 
 	@media screen and (max-width: 800px) {
 		width: 50px;

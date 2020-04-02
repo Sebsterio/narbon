@@ -13,6 +13,7 @@ import { checkUserSession } from "./redux/user/user.actions";
 import { fetchCollectionsStart } from "./redux/shop/shop.actions";
 
 import { GlobalStyle } from "./global.styles";
+import { MainContent } from "./app.styles.js";
 
 const CollectionPageContainer = lazy(() =>
 	import("./pages/catalog/catalog.container")
@@ -44,50 +45,52 @@ const App = ({ checkUserSession, currentUser, fetchCollectionsStart }) => {
 		<div className="app">
 			<GlobalStyle />
 			<Header />
-			<ErrorBoundary>
-				<Suspense fallback={<Spinner />}>
-					<Switch>
-						{/*************** CATALOG ***************/}
-						<Route
-							exact
-							path="/"
-							render={() => <Redirect to="/catalog/all" />}
-						/>
-						<Route
-							exact
-							path="/catalog"
-							render={() => <Redirect to="/catalog/all" />}
-						/>
-						<Route
-							path="/catalog/:collectionId"
-							component={CollectionPageContainer}
-						/>
+			<MainContent>
+				<ErrorBoundary>
+					<Suspense fallback={<Spinner />}>
+						<Switch>
+							{/*************** CATALOG ***************/}
+							<Route
+								exact
+								path="/"
+								render={() => <Redirect to="/catalog/all" />}
+							/>
+							<Route
+								exact
+								path="/catalog"
+								render={() => <Redirect to="/catalog/all" />}
+							/>
+							<Route
+								path="/catalog/:collectionId"
+								component={CollectionPageContainer}
+							/>
 
-						{/*************** PRODUCT ***************/}
-						<Route
-							exact
-							path="/product"
-							render={() => <Redirect to="/catalog/all" />}
-						/>
-						<Route
-							path="/product/:productId"
-							component={ProductPageContainer}
-						/>
+							{/*************** PRODUCT ***************/}
+							<Route
+								exact
+								path="/product"
+								render={() => <Redirect to="/catalog/all" />}
+							/>
+							<Route
+								path="/product/:productId"
+								component={ProductPageContainer}
+							/>
 
-						{/**************** REST ****************/}
-						<Route exact path="/checkout" component={CheckoutPage} />
-						<Route exact path="/sync" component={SyncPage} />
-						<Route
-							exact
-							path="/signin"
-							render={() =>
-								currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
-							}
-						/>
-						<Route render={PageNotFound} />
-					</Switch>
-				</Suspense>
-			</ErrorBoundary>
+							{/**************** REST ****************/}
+							<Route exact path="/checkout" component={CheckoutPage} />
+							<Route exact path="/sync" component={SyncPage} />
+							<Route
+								exact
+								path="/signin"
+								render={() =>
+									currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
+								}
+							/>
+							<Route render={PageNotFound} />
+						</Switch>
+					</Suspense>
+				</ErrorBoundary>
+			</MainContent>
 		</div>
 	);
 };
