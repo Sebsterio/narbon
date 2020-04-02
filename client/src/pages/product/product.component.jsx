@@ -8,16 +8,28 @@ import { Redirect } from "react-router-dom";
 
 export const ProductPage = ({ product }) => {
 	if (!product) return <Redirect to="/page-missing" />;
-	const { name, color, customColor, description, id, imageUrl, type } = product;
+	const {
+		name,
+		color,
+		customColor,
+		description,
+		id,
+		imageUrls,
+		type
+	} = product;
+	const imagesArr = [...imageUrls.split("\n")];
+	const descriptionArr = [...description.split("\n")];
 	return (
 		<div>
 			<p>{name}</p>
-			<p>{color}</p>
-			<p>{customColor}</p>
-			<p>{description}</p>
-			<p>{id}</p>
-			<p>{imageUrl}</p>
-			<p>{type}</p>
+			<p>
+				{descriptionArr.map((line, i) => (
+					<span key={i}>{line}</span>
+				))}
+			</p>
+			{imagesArr.map((img, i) => (
+				<p key={i}>{img}</p>
+			))}
 		</div>
 	);
 };

@@ -13,10 +13,10 @@ import {
 } from "./collection-item.styles";
 
 export const CollectionItem = ({ item, addItem }) => {
-	const { name, price, imageUrl } = item;
+	const { name, price, thumbUrl } = item;
 	return (
 		<CollectionItemContainer>
-			<BackgroundImage className="image" imageUrl={imageUrl} />
+			<BackgroundImage className="image" imageUrl={thumbUrl} />
 			<CollectionFooterContainer>
 				<NameContainer>{name}</NameContainer>
 				<PriceContainer>{price}</PriceContainer>
