@@ -26,7 +26,8 @@ const isScrollNearBottom = (threshold = 0) => {
 class CatalogPage extends React.Component {
 	// useState is buggy with event listener; useRef doesn't casue rerender
 	state = {
-		visibleCount: 1
+		visibleCount: 1,
+		allPicsLoaded: false
 	};
 
 	componentDidMount() {
@@ -39,13 +40,17 @@ class CatalogPage extends React.Component {
 	}
 
 	loadPixOnScroll = () => {
-		if (isScrollNearBottom(300))
-			this.setState({ visibleCount: this.state.visibleCount + 1 });
+		if (this.state.allPicsLoaded || !isScrollNearBottom(300)) return;
+		this.setState({ visibleCount: this.state.visibleCount + 1 }, () => {
+			if (this.state.visibleCount >= this.props.collection.items.length)
+				this.setState({ allPicsLoaded: true });
+		});
 	};
 
 	render() {
 		let { items, title } = this.props.collection;
 		const { visibleCount } = this.state;
+
 		if (title == "all") title = "";
 
 		return (
