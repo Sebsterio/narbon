@@ -30,13 +30,17 @@
 
 			&.collapsed {
 				width: 0;
+
+				.desc {
+					transform: translateX(-100%);
+				}
 			}
 
 			.desc-container {
 				position: fixed;
-				width: 100%;
-				height: 80%;
 				width: var(--desc-width);
+				height: 80%;
+				overflow: hidden;
 
 				.desc {
 					height: 100%;
@@ -46,6 +50,7 @@
 					align-content: center;
 					align-items: center;
 					text-align: center;
+					transition: all 400ms ease;
 
 					span {
 						display: block;
