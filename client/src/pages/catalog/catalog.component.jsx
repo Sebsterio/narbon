@@ -4,22 +4,13 @@ import { connect } from "react-redux";
 import CollectionItem from "../../components/collection-item/collection-item.component";
 
 import { selectCollection } from "../../redux/shop/shop.selectors";
+import { debounce, isScrollNearBottom } from "../../utils";
 
 import {
 	CollectionPageContainer,
 	CollectionTitle,
 	CollectionItemsContainer
 } from "./catalog.styles";
-
-const isScrollNearBottom = (threshold = 0) => {
-	const D = document;
-	const docHeight = Math.max(
-		D.body.scrollHeight,
-		D.body.offsetHeight,
-		D.body.clientHeight
-	);
-	return window.scrollY + window.innerHeight + threshold >= docHeight - 1;
-};
 
 // ----------------------------------------------------------------------------
 
@@ -31,7 +22,7 @@ class CatalogPage extends React.Component {
 	};
 
 	componentDidMount() {
-		window.addEventListener("scroll", this.loadPixOnScroll);
+		window.addEventListener("scroll", this.handleSroll);
 		this.loadPixOnScroll();
 	}
 
@@ -39,14 +30,25 @@ class CatalogPage extends React.Component {
 		this.loadPixOnScroll();
 	}
 
-	// TODO: remove event listener
+	componentWillUnmount() {
+		window.removeEventListener("scroll", this.handleSroll);
+	}
+
+	// fn must be named in order to remove listener
+	handleSroll() {
+		debounce(this.loadPixOnScroll);
+	}
+
 	loadPixOnScroll = () => {
 		if (this.state.allPicsLoaded || !isScrollNearBottom(600)) return;
-		this.setState({ visibleCount: this.state.visibleCount + 1 }, () => {
-			if (this.state.visibleCount >= this.props.collection.items.length)
-				this.setState({ allPicsLoaded: true });
-		});
+		const newState = { visibleCount: this.state.visibleCount + 1 };
+		this.setState(newState, this.stopLoadingIfOutOfPics);
 	};
+
+	stopLoadingIfOutOfPics() {
+		if (this.state.visibleCount >= this.props.collection.items.length)
+			this.setState({ allPicsLoaded: true });
+	}
 
 	render() {
 		let { items, title } = this.props.collection;

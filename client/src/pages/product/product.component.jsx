@@ -12,6 +12,8 @@ import { AddButton } from "./product.styles";
 
 // -------------------------------------------------------------------------
 
+// TODO: movile-view: images align center, not top
+
 export const ProductPage = ({ product, addItem }) => {
 	const [collapsed, setCollapsed] = useState(false);
 
