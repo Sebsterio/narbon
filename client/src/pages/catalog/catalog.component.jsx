@@ -22,7 +22,7 @@ class CatalogPage extends React.Component {
 	};
 
 	componentDidMount() {
-		window.addEventListener("scroll", this.handleSroll);
+		window.addEventListener("scroll", this.handleSroll.bind(this));
 		this.loadPixOnScroll();
 	}
 
@@ -30,11 +30,6 @@ class CatalogPage extends React.Component {
 		this.loadPixOnScroll();
 	}
 
-	componentWillUnmount() {
-		window.removeEventListener("scroll", this.handleSroll);
-	}
-
-	// fn must be named in order to remove listener
 	handleSroll() {
 		debounce(this.loadPixOnScroll);
 	}
