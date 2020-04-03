@@ -62,18 +62,24 @@ export const ProductPage = ({ product, addItem }) => {
 								<span className="color">{color}</span>
 							</div>
 							<div className="form">
-								<select name="size" id="select-size" className="input">
+								<select
+									name="size"
+									defaultValue="M"
+									className="input"
+									id="select-size"
+								>
 									<option value="XS">XS</option>
 									<option value="S">S</option>
-									<option value="M" selected>
-										M
-									</option>
+									<option value="M">M</option>
 									<option value="L">L</option>
 								</select>
-								<select name="quantity" id="select-quantity" className="input">
-									<option value="1" selected>
-										1
-									</option>
+								<select
+									name="quantity"
+									defaultValue="1"
+									className="input"
+									id="select-quantity"
+								>
+									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
 									<option value="4">4</option>

@@ -49,7 +49,7 @@ class CatalogPage extends React.Component {
 		let { items, title } = this.props.collection;
 		const { visibleCount } = this.state;
 
-		if (title == "all") title = "";
+		if (title === "all") title = "";
 
 		return (
 			<CollectionPageContainer>
