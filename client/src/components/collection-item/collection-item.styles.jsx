@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CollectionItemContainer = styled.div`
 	width: 80vw;
-	height: 128vw;
+	height: 136vw;
 	display: grid;
 	grid-template-rows: 1fr auto;
 	grid-gap: 5px;
@@ -17,16 +17,17 @@ export const CollectionItemContainer = styled.div`
 
 	@media screen and (min-width: 400px) {
 		width: 40vw;
-		height: 64vw;
+		height: 68vw;
 	}
 
 	@media screen and (min-width: 800px) {
 		width: 30vw;
-		height: 48vw;
+		height: 51vw;
 	}
 	@media screen and (min-width: 1200px) {
 		width: 22vw;
-		height: 35.2vw;
+		max-width: 300px;
+		height: 37.5vw;
 	}
 
 	a {

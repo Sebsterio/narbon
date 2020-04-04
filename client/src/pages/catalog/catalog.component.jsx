@@ -16,7 +16,7 @@ import {
 // ----------------------------------------------------------------------------
 
 class CatalogPage extends React.Component {
-	// useState is buggy with event listener; useRef doesn't casue rerender
+	// useState is buggy with event listener; useRef doesn't trigger rerender
 	state = {
 		visibleCount: 1,
 		allPicsLoaded: false,
@@ -24,6 +24,7 @@ class CatalogPage extends React.Component {
 
 	componentDidMount() {
 		window.addEventListener("scroll", this.handleSroll.bind(this));
+		window.addEventListener("resize", this.handleSroll.bind(this));
 		this.loadPixOnScroll();
 	}
 
@@ -36,7 +37,7 @@ class CatalogPage extends React.Component {
 	}
 
 	loadPixOnScroll = () => {
-		if (this.state.allPicsLoaded || !isScrollNearBottom(600)) return;
+		if (this.state.allPicsLoaded || !isScrollNearBottom(750)) return;
 		const newState = { visibleCount: this.state.visibleCount + 1 };
 		this.setState(newState, this.stopLoadingIfOutOfPics);
 	};

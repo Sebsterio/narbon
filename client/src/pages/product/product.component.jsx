@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { selectProduct } from "../../redux/shop/shop.selectors";
+import {
+	selectProduct,
+	selectNextProduct,
+} from "../../redux/shop/shop.selectors";
 import { addItem } from "../../redux/cart/cart.actions";
 import { getHtml } from "./product.utils";
 
@@ -22,7 +26,6 @@ class ProductPage extends React.Component {
 		};
 		this.toggleCollapsed = this.toggleCollapsed.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-		this.addCustomItem = this.addCustomItem.bind(this);
 	}
 
 	toggleCollapsed() {
@@ -33,28 +36,22 @@ class ProductPage extends React.Component {
 		this.setState({ [e.target.name]: e.target.value });
 	}
 
-	addCustomItem() {
-		const { product } = this.props;
-		const { size, quantity } = this.state;
-		console.log(size, quantity);
-		this.props.addItem({ ...product, size, quantity });
-	}
-
 	render() {
-		const { product } = this.props;
+		const { product, nextProduct, history, addItem } = this.props;
 		if (!product) return <Redirect to="/page-missing" />;
 
 		// prettier-ignore
 		const {	name,	price, color, customColor, description, imageUrls, type	} = product;
 		const { collapsed, size, quantity } = this.state;
-		const handleChange = this.handleChange;
-		const addCustomItem = this.addCustomItem;
-		const toggleCollapsed = this.toggleCollapsed;
 		const { imagesHtml, descriptionHtml, help } = getHtml(
 			imageUrls,
 			description,
 			customColor
 		);
+		const handleChange = this.handleChange;
+		const toggleCollapsed = this.toggleCollapsed;
+		const goNext = () => history.push("/product/" + nextProduct.id);
+		const addCustomItem = () => addItem({ ...product, size, quantity });
 
 		return (
 			<div className="ProductPage">
@@ -110,9 +107,13 @@ class ProductPage extends React.Component {
 									<span>{help}</span>
 								</div>
 								<div className="nav-buttons">
-									<span className="nav-btn prev">prev</span>
+									<span className="nav-btn prev" onClick={history.goBack}>
+										back
+									</span>
 									<span className="nav-btn separator"> | </span>
-									<span className="nav-btn next">next</span>
+									<span className="nav-btn next" onClick={goNext}>
+										next
+									</span>
 								</div>
 							</div>
 						</div>
@@ -125,6 +126,7 @@ class ProductPage extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
 	product: selectProduct(ownProps.match.params.productId)(state),
+	nextProduct: selectNextProduct(ownProps.match.params.productId)(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

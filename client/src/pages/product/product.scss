@@ -107,6 +107,11 @@
 
 		span {
 			display: inline;
+			cursor: pointer;
+
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 }

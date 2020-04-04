@@ -4,7 +4,6 @@ import { createStructuredSelector } from "reselect";
 
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
-import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { signOutStart } from "../../redux/user/user.actions";
 
@@ -15,10 +14,10 @@ import {
 	HeaderWrap,
 	LogoContainer,
 	OptionsContainer,
-	OptionLink
+	OptionLink,
 } from "./header.styles";
 
-export const Header = ({ currentUser, hidden, signOutStart }) => (
+export const Header = ({ currentUser, signOutStart }) => (
 	<HeaderContainer>
 		<HeaderWrap>
 			<LogoContainer href="https://www.narbonpatricia.com/">
@@ -26,28 +25,31 @@ export const Header = ({ currentUser, hidden, signOutStart }) => (
 			</LogoContainer>
 			<OptionsContainer>
 				{/* TODO: render only on garment page OR NavLink - underline when current */}
-				<OptionLink to="/catalog">SHOP</OptionLink>
+				<OptionLink to="/catalog" activeClassName="active">
+					SHOP
+				</OptionLink>
 				{currentUser ? (
 					<OptionLink as="div" onClick={signOutStart}>
 						SIGN OUT
 					</OptionLink>
 				) : (
-					<OptionLink to="/signin">SIGN IN</OptionLink>
+					<OptionLink to="/signin" activeClassName="active">
+						SIGN IN
+					</OptionLink>
 				)}
 				<CartIcon />
 			</OptionsContainer>
-			{hidden ? null : <CartDropdown />}
+			<CartDropdown />
 		</HeaderWrap>
 	</HeaderContainer>
 );
 
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
-	hidden: selectCartHidden
 });
 
-const mapDispatchToProps = dispatch => ({
-	signOutStart: () => dispatch(signOutStart())
+const mapDispatchToProps = (dispatch) => ({
+	signOutStart: () => dispatch(signOutStart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

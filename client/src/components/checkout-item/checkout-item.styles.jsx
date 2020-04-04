@@ -2,15 +2,18 @@ import styled from "styled-components";
 
 export const CheckoutItemContainer = styled.div`
 	width: 100%;
-	display: flex;
 	min-height: 100px;
-	border-bottom: 1px solid darkgrey;
 	padding: 15px 0;
-	font-size: 20px;
+	display: grid;
+	grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+	grid-gap: 8px;
+	justify-items: center;
 	align-items: center;
+	border-bottom: 1px solid darkgrey;
+	font-size: 20px;
 
 	@media screen and (max-width: 800px) {
-		font-size: 18px;
+		font-size: 17px;
 	}
 
 	@media screen and (max-width: 400px) {
@@ -19,9 +22,6 @@ export const CheckoutItemContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-	width: 23%;
-	padding-right: 15px;
-
 	img {
 		width: 100%;
 		height: 100%;
@@ -29,8 +29,6 @@ export const ImageContainer = styled.div`
 `;
 
 export const TextContainer = styled.span`
-	width: 23%;
-
 	@media screen and (max-width: 800px) {
 		width: 22%;
 	}
@@ -51,7 +49,6 @@ export const QuantityContainer = styled(TextContainer)`
 QuantityContainer.displayName = "QuantityContainer";
 
 export const RemoveButtonContainer = styled.div`
-	padding-left: 12px;
 	cursor: pointer;
 `;
 
