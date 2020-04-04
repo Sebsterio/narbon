@@ -6,21 +6,21 @@ import logo from "../../assets/narbon_logo_white.png";
 
 const StripeCheckoutButton = ({ price }) => {
 	const priceForStripe = price * 100;
-	const publishableKey = "pk_test_C1bOWlnZYi0A7g9W0HwdTBmR00mogFMkK4";
+	const publishableKey = "pk_live_QlC9iZ40u0sGfHVeKsrIXteS";
 
-	const onToken = token => {
+	const onToken = (token) => {
 		axios({
 			url: "payment",
 			method: "post",
 			data: {
 				amount: priceForStripe,
-				token: token
-			}
+				token: token,
+			},
 		})
-			.then(response => {
+			.then((response) => {
 				alert("succesful payment");
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.log("Payment Error: ", error);
 				alert(
 					"There was an issue with your payment! Please make sure you use the provided credit card."
