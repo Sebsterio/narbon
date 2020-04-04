@@ -37,9 +37,12 @@ export const CheckoutPage = ({ cartItems, total }) => (
 			</HeaderBlockContainer>
 		</CheckoutHeaderContainer>
 		{cartItems.map((cartItem) => (
-			<CheckoutItem key={cartItem.id} cartItem={cartItem} />
+			<CheckoutItem
+				key={`${cartItem.id}-${cartItem.size}`}
+				cartItem={cartItem}
+			/>
 		))}
-		<TotalContainer>TOTAL: ${total}</TotalContainer>
+		<TotalContainer>TOTAL: &euro;{total}</TotalContainer>
 		<StripeCheckoutButton price={total} />
 	</CheckoutPageContainer>
 );

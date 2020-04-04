@@ -1,14 +1,14 @@
 .ProductPage {
-	--desc-width: calc(100vw - 65px);
+	--info-width: calc(100vw - 65px);
 
 	@media screen and (min-width: 400px) {
-		--desc-width: 280px;
+		--info-width: 280px;
 	}
 	@media screen and (min-width: 800px) {
-		--desc-width: 320px;
+		--info-width: 320px;
 	}
 	@media screen and (min-width: 1200px) {
-		--desc-width: 360px;
+		--info-width: 360px;
 	}
 
 	.wrapper {
@@ -29,21 +29,21 @@
 			}
 		}
 
-		.desc-dock {
-			width: var(--desc-width);
+		.info-dock {
+			width: var(--info-width);
 			transition: width 400ms ease;
 
 			&.collapsed {
 				width: 0;
 
-				.desc {
+				.info {
 					transform: translateX(-100%);
 				}
 			}
 
-			.desc-container {
+			.info-container {
 				position: fixed;
-				width: var(--desc-width);
+				width: var(--info-width);
 				height: calc(100vh - 60px);
 				overflow: hidden;
 
@@ -55,7 +55,7 @@
 	}
 }
 
-.desc {
+.info {
 	height: 100%;
 	padding: 30px;
 	display: grid;
