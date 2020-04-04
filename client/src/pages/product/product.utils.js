@@ -16,7 +16,9 @@ export const getHtml = (imageUrls, description, customColor) => {
 	));
 	if (customColor) descriptionHtml.push(customColorText);
 
-	const help = <a href="mailto:contact@narbonpatricia.com">need help?</a>;
+	const help = (
+		<a href="https://www.narbonpatricia.com/contact.html">need help?</a>
+	);
 
 	return { imagesHtml, descriptionHtml, help };
 };

@@ -11,6 +11,7 @@ import PageNotFound from "./components/error/page-not-found";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
 import { fetchCollectionsStart } from "./redux/shop/shop.actions";
+import { hideCart } from "./redux/cart/cart.actions";
 
 import { GlobalStyle } from "./global.styles";
 import { MainContent } from "./app.styles.js";
@@ -32,7 +33,12 @@ const SyncPage = lazy(() => import("./pages/sync/sync"));
 /* Triggers user auth onMount
  * Triggers catalog data fetch onMount
  * Renders Spinner when chunk is fetching */
-const App = ({ checkUserSession, currentUser, fetchCollectionsStart }) => {
+const App = ({
+	checkUserSession,
+	currentUser,
+	fetchCollectionsStart,
+	hideCart,
+}) => {
 	useEffect(() => {
 		checkUserSession();
 	}, [checkUserSession]);
@@ -40,6 +46,12 @@ const App = ({ checkUserSession, currentUser, fetchCollectionsStart }) => {
 	useEffect(() => {
 		fetchCollectionsStart();
 	}, [fetchCollectionsStart]);
+
+	useEffect(() => {
+		document.addEventListener("click", (e) => {
+			if (!e.target.closest(".ignore-click-listener")) hideCart();
+		});
+	}, [hideCart]);
 
 	return (
 		<div className="app">
@@ -96,12 +108,13 @@ const App = ({ checkUserSession, currentUser, fetchCollectionsStart }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-	currentUser: selectCurrentUser
+	currentUser: selectCurrentUser,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
 	checkUserSession: () => dispatch(checkUserSession()),
-	fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
+	fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
+	hideCart: () => dispatch(hideCart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const HeaderContainer = styled.div`
 	z-index: 9999;
@@ -16,6 +16,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const HeaderWrap = styled.div`
+	position: relative;
 	height: 100%;
 	max-width: 1200px;
 	margin: auto;
@@ -60,9 +61,18 @@ export const OptionsContainer = styled.div`
 	}
 `;
 
-export const OptionLink = styled(Link)`
+export const OptionLink = styled(NavLink)`
 	padding: 10px 15px;
 	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	&.active {
+		// box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25);
+		background: radial-gradient(pink, transparent 75%, transparent);
+	}
 `;
 
 OptionLink.displayName = "OptionLink";
