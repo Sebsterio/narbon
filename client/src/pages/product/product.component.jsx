@@ -26,7 +26,7 @@ export const ProductPage = ({ product, addItem }) => {
 		description,
 		id,
 		imageUrls,
-		type
+		type,
 	} = product;
 
 	const imagesHtml = [...imageUrls.split("\n")].map((imgUrl, i) => (
@@ -42,7 +42,7 @@ export const ProductPage = ({ product, addItem }) => {
 		</span>
 	);
 	if (customColor) descriptionHtml.push(customColorText);
-	const help = "need help?";
+	const help = <a href="mailto:contact@narbonpatricia.com">need help?</a>;
 
 	return (
 		<div className="ProductPage">
@@ -109,11 +109,11 @@ export const ProductPage = ({ product, addItem }) => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-	product: selectProduct(ownProps.match.params.productId)(state)
+	product: selectProduct(ownProps.match.params.productId)(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-	addItem: item => dispatch(addItem(item))
+const mapDispatchToProps = (dispatch) => ({
+	addItem: (item) => dispatch(addItem(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

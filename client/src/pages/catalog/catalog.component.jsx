@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import CollectionItem from "../../components/collection-item/collection-item.component";
 
@@ -9,7 +10,7 @@ import { debounce, isScrollNearBottom } from "../../utils";
 import {
 	CollectionPageContainer,
 	CollectionTitle,
-	CollectionItemsContainer
+	CollectionItemsContainer,
 } from "./catalog.styles";
 
 // ----------------------------------------------------------------------------
@@ -18,7 +19,7 @@ class CatalogPage extends React.Component {
 	// useState is buggy with event listener; useRef doesn't casue rerender
 	state = {
 		visibleCount: 1,
-		allPicsLoaded: false
+		allPicsLoaded: false,
 	};
 
 	componentDidMount() {
@@ -46,6 +47,8 @@ class CatalogPage extends React.Component {
 	}
 
 	render() {
+		if (!this.props.collection) return <Redirect to="/page-missing" />;
+
 		let { items, title } = this.props.collection;
 		const { visibleCount } = this.state;
 
@@ -67,7 +70,7 @@ class CatalogPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-	collection: selectCollection(ownProps.match.params.collectionId)(state)
+	collection: selectCollection(ownProps.match.params.collectionId)(state),
 });
 
 export default connect(mapStateToProps)(CatalogPage);
