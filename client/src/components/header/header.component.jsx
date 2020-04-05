@@ -4,8 +4,9 @@ import { createStructuredSelector } from "reselect";
 
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { signOutStart } from "../../redux/user/user.actions";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
 
 import logo from "../../assets/narbon_logo_transparent.png";
 
@@ -17,7 +18,7 @@ import {
 	OptionLink,
 } from "./header.styles";
 
-export const Header = ({ currentUser, signOutStart }) => (
+export const Header = ({ currentUser, signOutStart, itemCount }) => (
 	<HeaderContainer>
 		<HeaderWrap>
 			<LogoContainer href="https://www.narbonpatricia.com/">
@@ -37,6 +38,11 @@ export const Header = ({ currentUser, signOutStart }) => (
 						SIGN IN
 					</OptionLink>
 				)}
+				{itemCount > 0 ? (
+					<OptionLink to="/checkout" activeClassName="active">
+						BAG
+					</OptionLink>
+				) : null}
 				<CartIcon />
 			</OptionsContainer>
 			<CartDropdown />
@@ -46,6 +52,7 @@ export const Header = ({ currentUser, signOutStart }) => (
 
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
+	itemCount: selectCartItemsCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({
