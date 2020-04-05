@@ -26,7 +26,7 @@ export const Header = ({ currentUser, signOutStart, itemCount }) => (
 			</LogoContainer>
 			<OptionsContainer>
 				{/* TODO: render only on garment page OR NavLink - underline when current */}
-				<OptionLink to="/catalog" activeClassName="active">
+				<OptionLink to="/catalog/all" activeClassName="active">
 					SHOP
 				</OptionLink>
 				{currentUser ? (

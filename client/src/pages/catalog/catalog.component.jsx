@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 
+import PageNotFound from "../../components/error/page-not-found";
 import CollectionItem from "../../components/collection-item/collection-item.component";
 
 import { selectCollection } from "../../redux/shop/shop.selectors";
@@ -15,17 +15,33 @@ import {
 
 // ----------------------------------------------------------------------------
 
+// TODO: add a button to load more pix in case autoload gets fucked
+
 class CatalogPage extends React.Component {
 	// useState is buggy with event listener; useRef doesn't trigger rerender
-	state = {
-		visibleCount: 1,
-		allPicsLoaded: false,
-	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			visibleCount: 4,
+			allPicsLoaded: false,
+		};
+		this.handleSroll = this.handleSroll.bind(this);
+		this.loadPixOnScroll = this.loadPixOnScroll.bind(this);
+		this.stopLoadingIfOutOfPics = this.stopLoadingIfOutOfPics.bind(this);
+	}
 
 	componentDidMount() {
-		window.addEventListener("scroll", this.handleSroll.bind(this));
-		window.addEventListener("resize", this.handleSroll.bind(this));
+		console.log("CollectionPage mounted");
+		const { preload, collection } = this.props;
+		if (preload || !collection) return;
+		window.addEventListener("scroll", this.handleSroll);
+		window.addEventListener("resize", this.handleSroll);
 		this.loadPixOnScroll();
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener("scroll", this.handleSroll);
+		window.removeEventListener("resize", this.handleSroll);
 	}
 
 	componentDidUpdate() {
@@ -48,11 +64,10 @@ class CatalogPage extends React.Component {
 	}
 
 	render() {
-		if (!this.props.collection) return <Redirect to="/page-missing" />;
+		if (!this.props.collection) return <PageNotFound />;
 
 		let { items, title } = this.props.collection;
 		const { visibleCount } = this.state;
-
 		if (title === "all") title = "";
 
 		return (
@@ -71,7 +86,9 @@ class CatalogPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-	collection: selectCollection(ownProps.match.params.collectionId)(state),
+	collection: ownProps.preload
+		? null
+		: selectCollection(ownProps.match.params.collectionId)(state),
 });
 
 export default connect(mapStateToProps)(CatalogPage);

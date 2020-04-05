@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+
+import PageNotFound from "../../components/error/page-not-found";
 
 import {
 	selectProduct,
@@ -8,8 +9,6 @@ import {
 } from "../../redux/shop/shop.selectors";
 import { addItem } from "../../redux/cart/cart.actions";
 import { getHtml } from "./product.utils";
-
-import { Redirect } from "react-router-dom";
 
 import "./product.scss";
 import { AddButton } from "./product.styles";
@@ -28,6 +27,10 @@ class ProductPage extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 	}
 
+	componentDidMount() {
+		console.log("ProductPage mounted");
+	}
+
 	toggleCollapsed() {
 		this.setState({ collapsed: !this.state.collapsed });
 	}
@@ -38,7 +41,7 @@ class ProductPage extends React.Component {
 
 	render() {
 		const { product, nextProduct, history, addItem } = this.props;
-		if (!product) return <Redirect to="/page-missing" />;
+		if (!product) return <PageNotFound />;
 
 		// prettier-ignore
 		const {	name,	price, color, customColor, description, imageUrls, type	} = product;
@@ -125,8 +128,12 @@ class ProductPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-	product: selectProduct(ownProps.match.params.productId)(state),
-	nextProduct: selectNextProduct(ownProps.match.params.productId)(state),
+	product: ownProps.preload
+		? null
+		: selectProduct(ownProps.match.params.productId)(state),
+	nextProduct: ownProps.preload
+		? null
+		: selectNextProduct(ownProps.match.params.productId)(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

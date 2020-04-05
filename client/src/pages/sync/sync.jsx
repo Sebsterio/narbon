@@ -6,22 +6,24 @@ import { selectIsSyncSuccess } from "../../redux/shop/shop.selectors";
 
 import { SyncText } from "./sync.styles";
 
-export const SyncPage = ({ syncCollectionsStart, isSyncSuccess }) => {
+export const SyncPage = ({ syncCollectionsStart, isSyncSuccess, preload }) => {
 	useEffect(() => {
-		syncCollectionsStart();
+		if (syncCollectionsStart) syncCollectionsStart();
 	}, [syncCollectionsStart]);
+
+	if (preload) return null;
 
 	return (
 		<SyncText>{isSyncSuccess ? "Sync succesful" : "Syncing..."} </SyncText>
 	);
 };
 
-const mapStateToProps = state => ({
-	isSyncSuccess: selectIsSyncSuccess(state)
+const mapStateToProps = (state) => ({
+	isSyncSuccess: selectIsSyncSuccess(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-	syncCollectionsStart: () => dispatch(syncCollectionsStart())
+const mapDispatchToProps = (dispatch) => ({
+	syncCollectionsStart: () => dispatch(syncCollectionsStart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SyncPage);
