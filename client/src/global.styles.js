@@ -14,4 +14,23 @@ export const GlobalStyle = createGlobalStyle`
 	* {
 		box-sizing: border-box;
 	}
+
+	.transition-enter {
+		opacity: 0 !important;
+	}
+	
+	.transition-enter-active, .transition-enter-done {
+		opacity: 1 !important;
+		transition: opacity 400ms !important;
+	}
+	
+	.transition-exit {
+		opacity: 1 !important;
+	}
+	
+	.transition-exit-active, .transition-exit-done { 
+		opacity: 0 !important;
+		transition: opacity 400ms !important;
+	}
 `;
+// all pages pos. aboslute ?
