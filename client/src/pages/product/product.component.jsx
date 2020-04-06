@@ -10,8 +10,8 @@ import {
 import { addItem } from "../../redux/cart/cart.actions";
 import { getHtml } from "./product.utils";
 
-import "./product.scss";
 import { AddButton } from "./product.styles";
+import "./product.scss";
 
 // -------------------------------------------------------------------------
 

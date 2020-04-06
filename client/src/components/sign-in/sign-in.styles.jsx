@@ -14,9 +14,9 @@ export const SignInTitle = styled.h2`
 export const ButtonsBarContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-around;
 
 	button {
-		flex: 1 1 50%;
+		flex: 0 1 40%;
 	}
 `;
