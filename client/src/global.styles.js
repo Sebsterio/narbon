@@ -4,6 +4,13 @@ export const GlobalStyle = createGlobalStyle`
 	body {
 		height: 100vh;
 		font-family: "Josefin Sans", "Open Sans", "Helvetica Neue", "Helvetica", "sans-serif";
+
+		--header-height: 60px
+
+		@media screen and (min-width: 800px) {
+			--header-height: 100px;
+		}
+
 	}
 
 	a {

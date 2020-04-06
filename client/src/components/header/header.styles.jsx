@@ -8,11 +8,7 @@ export const HeaderContainer = styled.div`
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 60px;
-
-	@media screen and (min-width: 800px) {
-		height: 100px;
-	}
+	height: var(--header-height);
 `;
 
 export const HeaderWrap = styled.div`

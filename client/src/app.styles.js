@@ -1,24 +1,13 @@
 import styled from "styled-components";
 
-export const MainContent = styled.div``;
-
-export const RouteContainer = styled.div`
+export const PageContainer = styled.div`
 	position: absolute;
 	width: 100%;
-	padding: 60px 10px 10px 10px;
-
-	@media screen and (min-width: 800px) {
-		padding: 100px 20px 40px 20px;
-	}
+	min-height: 100vh;
+	padding-top: var(--header-height);
+	display: flex;
+	flex-flow: column nowrap;
 `;
-
-export const Footer = styled.div`
-	position: fixed;
-	bottom: 0;
-	height: 30px;
-	width: 100%;
-	background: white;
-	display: grid;
-	justify-content: center;
-	align-items: center;
+export const MainContent = styled.div`
+	padding: 0 10px 0 10px;
 `;

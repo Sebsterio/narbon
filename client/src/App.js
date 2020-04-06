@@ -5,6 +5,7 @@ import { createStructuredSelector } from "reselect";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Header from "./components/header/header.component";
+import Footer from "./components/footer/footer.component";
 import Spinner from "./components/spinner/spinner.component";
 import ErrorBoundary from "./components/error/error-boundary.component";
 import PageNotFound from "./components/error/page-not-found";
@@ -16,7 +17,7 @@ import { fetchCollectionsStart } from "./redux/shop/shop.actions";
 import { hideCart } from "./redux/cart/cart.actions";
 
 import { GlobalStyle } from "./global.styles";
-import { MainContent, RouteContainer, Footer } from "./app.styles.js";
+import { PageContainer, MainContent } from "./app.styles.js";
 
 const CollectionPageContainer = lazy(() =>
 	import("./pages/catalog/catalog.container")
@@ -87,32 +88,32 @@ const App = ({
 		<div className="app">
 			<GlobalStyle />
 			<Header />
-			<MainContent>
-				<ErrorBoundary>
-					<Suspense fallback={<Spinner />}>
-						<Route
-							render={({ location }) => (
-								<div>
-									{/* Redirects don't work with TransitionGroup */}
+			<ErrorBoundary>
+				<Suspense fallback={<Spinner />}>
+					<Route
+						render={({ location }) => (
+							<div>
+								{/* Redirects don't work with TransitionGroup */}
+								<Route
+									exact
+									path={["/", "/catalog", "/product"]}
+									render={() => <Redirect to="/catalog/all" />}
+								/>
+								{currentUser ? (
 									<Route
 										exact
-										path={["/", "/catalog", "/product"]}
-										render={() => <Redirect to="/catalog/all" />}
+										path="/signin"
+										render={() => <Redirect to="/" />}
 									/>
-									{currentUser ? (
-										<Route
-											exact
-											path="/signin"
-											render={() => <Redirect to="/" />}
-										/>
-									) : null}
-									<TransitionGroup>
-										<CSSTransition
-											key={location.key}
-											classNames="transition"
-											timeout={400}
-										>
-											<RouteContainer>
+								) : null}
+								<TransitionGroup>
+									<CSSTransition
+										key={location.key}
+										classNames="transition"
+										timeout={400}
+									>
+										<PageContainer>
+											<MainContent>
 												<Switch location={location}>
 													{routes.map((route) => (
 														<Route
@@ -122,17 +123,17 @@ const App = ({
 														/>
 													))}
 												</Switch>
-											</RouteContainer>
-										</CSSTransition>
-									</TransitionGroup>
-								</div>
-							)}
-						></Route>
-						<PreloadLazyComponents routes={routes} />
-					</Suspense>
-				</ErrorBoundary>
-			</MainContent>
-			<Footer>Footer Footer Footer Footer</Footer>
+											</MainContent>
+											<Footer location={location} />
+										</PageContainer>
+									</CSSTransition>
+								</TransitionGroup>
+							</div>
+						)}
+					></Route>
+					<PreloadLazyComponents routes={routes} />
+				</Suspense>
+			</ErrorBoundary>
 		</div>
 	);
 };
