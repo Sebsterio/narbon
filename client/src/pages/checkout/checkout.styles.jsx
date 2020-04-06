@@ -42,7 +42,7 @@ export const HeaderBlockContainer = styled.div`
 export const TotalContainer = styled.div`
 	margin-top: 30px;
 	margin-left: auto;
-	font-size: 36px;
+	font-size: 28px;
 
 	@media screen and (max-width: 800px) {
 		font-size: 27px;
@@ -50,4 +50,8 @@ export const TotalContainer = styled.div`
 	@media screen and (max-width: 400px) {
 		font-size: 18px;
 	}
+`;
+export const ButtonContainer = styled.div`
+	margin-top: -22px;
+	margin-left: auto;
 `;

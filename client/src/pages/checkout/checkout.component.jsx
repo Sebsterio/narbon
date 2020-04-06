@@ -15,6 +15,7 @@ import {
 	CheckoutHeaderContainer,
 	HeaderBlockContainer,
 	TotalContainer,
+	ButtonContainer,
 } from "./checkout.styles";
 
 export const CheckoutPage = ({ cartItems, total }) => (
@@ -43,7 +44,9 @@ export const CheckoutPage = ({ cartItems, total }) => (
 			/>
 		))}
 		<TotalContainer>TOTAL: &euro;{total}</TotalContainer>
-		<StripeCheckoutButton price={total} />
+		<ButtonContainer>
+			<StripeCheckoutButton price={total} />
+		</ButtonContainer>
 	</CheckoutPageContainer>
 );
 

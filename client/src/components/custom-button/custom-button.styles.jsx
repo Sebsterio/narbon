@@ -51,14 +51,27 @@ const googleSignInStyles = css`
 		box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 	}
 `;
-
-const getButtonStyles = (props) => {
-	if (props.isGoogleSignIn) {
-		return googleSignInStyles;
+const stripeStyles = css`
+	background-image: linear-gradient(
+		to right,
+		#111111,
+		#29323c,
+		#376f94,
+		#4e4376
+	);
+	&:hover {
+		box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 	}
+`;
 
-	return props.inverted ? invertedButtonStyles : buttonStyles;
-};
+const getButtonStyles = (props) =>
+	props.isGoogleSignIn
+		? googleSignInStyles
+		: props.stripe
+		? stripeStyles
+		: props.inverted
+		? invertedButtonStyles
+		: buttonStyles;
 
 export const CustomButtonContainer = styled.button`
 	min-width: 165px;

@@ -4,6 +4,8 @@ import axios from "axios";
 
 import logo from "../../assets/narbon_logo_white.png";
 
+import CustomButton from "../custom-button/custom-button.component";
+
 const StripeCheckoutButton = ({ price }) => {
 	const priceForStripe = price * 100;
 	const publishableKey = "pk_live_QlC9iZ40u0sGfHVeKsrIXteS";
@@ -40,7 +42,9 @@ const StripeCheckoutButton = ({ price }) => {
 			panelLabel="Pay Now"
 			token={onToken}
 			stripeKey={publishableKey}
-		/>
+		>
+			<CustomButton stripe>Pay Now</CustomButton>
+		</StripeCheckout>
 	);
 };
 
