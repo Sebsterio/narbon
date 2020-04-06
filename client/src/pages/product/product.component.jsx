@@ -10,8 +10,24 @@ import {
 import { addItem } from "../../redux/cart/cart.actions";
 import { getHtml } from "./product.utils";
 
-import { AddButton } from "./product.styles";
-import "./product.scss";
+import {
+	ProductPageContainer,
+	Wrapper,
+	Pics,
+	InfoDock,
+	AddButton,
+	InfoContainer,
+	Info,
+	Header,
+	SubHeading,
+	Form,
+	Heading,
+	Select,
+	Help,
+	Nav,
+	NavBtn,
+	Separator,
+} from "./product.styles";
 
 // -------------------------------------------------------------------------
 
@@ -57,41 +73,31 @@ class ProductPage extends React.Component {
 		const addCustomItem = () => addItem({ ...product, size, quantity });
 
 		return (
-			<div className="ProductPage">
-				<div className="wrapper">
-					<div className="pic" onClick={toggleCollapsed}>
-						{imagesHtml}
-					</div>
-					<div className={`info-dock ${collapsed ? "collapsed" : ""}`}>
-						<div className="info-container">
-							<div className="info">
-								<header>
-									<span className="heading">{name}</span>
-									<span className="price">&euro;{price}</span>
-								</header>
-								<div className="sub-heading">
-									<span className="type">{type}</span>
-									<span className="color">{color}</span>
-								</div>
-								<div className="form">
-									<select
-										name="size"
-										value={size}
-										onChange={handleChange}
-										className="input"
-										id="ProductPage-select-size"
-									>
+			<ProductPageContainer>
+				<Wrapper>
+					<Pics onClick={toggleCollapsed}>{imagesHtml}</Pics>
+					<InfoDock collapsed={collapsed}>
+						<InfoContainer>
+							<Info collapsed={collapsed}>
+								<Header>
+									<Heading>{name}</Heading>
+									<span>&euro;{price}</span>
+								</Header>
+								<SubHeading>
+									<span>{type}</span>
+									<span>{color}</span>
+								</SubHeading>
+								<Form>
+									<Select name="size" value={size} onChange={handleChange}>
 										<option value="XS">XS</option>
 										<option value="S">S</option>
 										<option value="M">M</option>
 										<option value="L">L</option>
-									</select>
-									<select
+									</Select>
+									<Select
 										name="quantity"
 										value={quantity}
 										onChange={handleChange}
-										className="input"
-										id="ProductPage-select-quantity"
 									>
 										<option value={1}>1</option>
 										<option value={2}>2</option>
@@ -99,30 +105,26 @@ class ProductPage extends React.Component {
 										<option value={4}>4</option>
 										<option value={5}>5</option>
 										<option value={6}>6</option>
-									</select>
-								</div>
+									</Select>
+								</Form>
 								<AddButton onClick={addCustomItem} inverted>
 									Add to bag
 								</AddButton>
 
-								<div className="description">{descriptionHtml}</div>
-								<div className="help">
+								<div>{descriptionHtml}</div>
+								<Help>
 									<span>{help}</span>
-								</div>
-								<div className="nav-buttons">
-									<span className="nav-btn prev" onClick={history.goBack}>
-										back
-									</span>
-									<span className="nav-btn separator"> | </span>
-									<span className="nav-btn next" onClick={goNext}>
-										next
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+								</Help>
+								<Nav>
+									<NavBtn onClick={history.goBack}>back</NavBtn>
+									<Separator className="nav-separator"> | </Separator>
+									<NavBtn onClick={goNext}>next</NavBtn>
+								</Nav>
+							</Info>
+						</InfoContainer>
+					</InfoDock>
+				</Wrapper>
+			</ProductPageContainer>
 		);
 	}
 }

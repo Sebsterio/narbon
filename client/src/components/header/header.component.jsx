@@ -31,11 +31,11 @@ export const Header = ({ currentUser, signOutStart, itemCount }) => (
 				</OptionLink>
 				{currentUser ? (
 					<OptionLink as="div" onClick={signOutStart}>
-						SIGN OUT
+						SIGN&nbsp;OUT
 					</OptionLink>
 				) : (
 					<OptionLink to="/signin" activeClassName="active">
-						SIGN IN
+						SIGN&nbsp;IN
 					</OptionLink>
 				)}
 				{itemCount > 0 ? (

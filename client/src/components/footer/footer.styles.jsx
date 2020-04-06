@@ -16,11 +16,10 @@ export const FooterContent = styled.div`
 	font-size: 12px;
 	text-align: center;
 
-	background: white;
-
 	@media screen and (max-width: 600px) {
 		flex-flow: column;
 	}
+
 	a:hover {
 		text-decoration: underline;
 	}
