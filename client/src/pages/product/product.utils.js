@@ -3,7 +3,7 @@ import React from "react";
 const customColorText = (
 	<span key="customColorText">
 		A different color can be chosen. Send your color selection to
-		shop@narbonpatricia.com after your purchase
+		contact@narbonpatricia.com after your purchase.
 	</span>
 );
 
