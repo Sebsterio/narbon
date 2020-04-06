@@ -6,7 +6,7 @@ const buttonStyles = css`
 		#222222,
 		#000000,
 		#383838,
-		#000000
+		#161616
 	);
 
 	&:hover {
@@ -29,7 +29,7 @@ const invertedButtonStyles = css`
 		#222222,
 		#000000,
 		#383838,
-		#000000
+		#161616
 	);
 
 	&:hover {
@@ -79,7 +79,7 @@ export const CustomButtonContainer = styled.button`
 	color: white;
 	border: none;
 	background-size: 300% 100%;
-	transition: background-position 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
 
 	${getButtonStyles}
 
@@ -88,6 +88,7 @@ export const CustomButtonContainer = styled.button`
 	}
 
 	&:active {
+		transition: none;
 		box-shadow: none;
 		transform: scale(0.98);
 	}
