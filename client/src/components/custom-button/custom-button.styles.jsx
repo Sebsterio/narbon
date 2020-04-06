@@ -3,10 +3,10 @@ import styled, { css } from "styled-components";
 const buttonStyles = css`
 	background-image: linear-gradient(
 		to right,
-		#29323c,
-		#485563,
-		#376f94,
-		#4e4376
+		#222222,
+		#000000,
+		#383838,
+		#000000
 	);
 
 	&:hover {
@@ -15,15 +15,25 @@ const buttonStyles = css`
 `;
 
 const invertedButtonStyles = css`
+	// **** pink shiny button ****
+	// background-image: linear-gradient(
+	// 	to right,
+	// 	#ee5793,
+	// 	#d11f60,
+	// 	#ff5f9f,
+	// 	#e6226a
+	// );
+
 	background-image: linear-gradient(
 		to right,
-		#ee5793,
-		#d11f60,
-		#ff5f9f,
-		#e6226a
+		#222222,
+		#000000,
+		#383838,
+		#000000
 	);
+
 	&:hover {
-		box-shadow: 0 4px 10px 1px rgba(236, 116, 149, 0.75);
+		box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 1);
 	}
 `;
 
@@ -32,10 +42,10 @@ const googleSignInStyles = css`
 	letter-spacing: 0;
 	background-image: linear-gradient(
 		to right,
-		#25aae1,
-		#4481eb,
-		#04befe,
-		#3f86ed
+		#111111,
+		#29323c,
+		#376f94,
+		#4e4376
 	);
 	&:hover {
 		box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
@@ -69,12 +79,17 @@ export const CustomButtonContainer = styled.button`
 	color: white;
 	border: none;
 	background-size: 300% 100%;
-	transition: all 0.4s ease-in-out;
+	transition: background-position 0.25s ease-in-out;
 
 	${getButtonStyles}
 
 	&:hover {
 		background-position: 100% 0;
+	}
+
+	&:active {
+		box-shadow: none;
+		transform: scale(0.98);
 	}
 
 	&:focus {
