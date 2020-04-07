@@ -99,7 +99,7 @@ export const Select = styled.select`
 	width: 100%;
 	height: 40px;
 	letter-spacing: 0.5px;
-	line-height: 50px;
+	line-height: 40px;
 	padding: 0 8px 0 8px;
 	display: flex;
 	font-size: 15px;

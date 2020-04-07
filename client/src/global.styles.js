@@ -12,15 +12,26 @@ export const GlobalStyle = createGlobalStyle`
 		}
 
 	}
+	* {
+		box-sizing: border-box;
+	}
 
 	a {
 		text-decoration: none;
 		color: black;
 	}
+	
+	select {
+		appearance: none;
+		background: transparent url("data:image/svg+xml;utf8,<svg fill='black' height='18' viewBox='0 0 24 24' width='18' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>") right center no-repeat !important;
+		background-position: right 5px top 50%;
+		padding-right: 20px;
+		outline: none;
+}
 
-	* {
-		box-sizing: border-box;
-	}
+select::-ms-expand {
+	display: none;
+}
 
 	.transition-enter {
 		opacity: 0 !important;
