@@ -45,7 +45,7 @@ export const CheckoutPage = ({ cartItems, total }) => (
 		))}
 		<TotalContainer>TOTAL: &euro;{total}</TotalContainer>
 		<ButtonContainer>
-			<StripeCheckoutButton price={total} />
+			<StripeCheckoutButton price={total} disabled={!cartItems.length} />
 		</ButtonContainer>
 	</CheckoutPageContainer>
 );

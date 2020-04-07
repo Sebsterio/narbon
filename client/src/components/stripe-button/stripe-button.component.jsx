@@ -6,7 +6,7 @@ import logo from "../../assets/narbon_logo_white.png";
 
 import CustomButton from "../custom-button/custom-button.component";
 
-const StripeCheckoutButton = ({ price }) => {
+const StripeCheckoutButton = ({ price, disabled }) => {
 	const priceForStripe = price * 100;
 	const publishableKey = "pk_live_QlC9iZ40u0sGfHVeKsrIXteS";
 
@@ -43,7 +43,9 @@ const StripeCheckoutButton = ({ price }) => {
 			token={onToken}
 			stripeKey={publishableKey}
 		>
-			<CustomButton stripe>Pay Now</CustomButton>
+			<CustomButton stripe disabled={disabled}>
+				Pay Now
+			</CustomButton>
 		</StripeCheckout>
 	);
 };
