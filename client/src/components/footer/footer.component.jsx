@@ -12,7 +12,7 @@ const Footer = ({ location }) =>
 		<FooterContainer>
 			<FooterContent>
 				<FooterElement>
-					<a href="https://www.narbonpatricia.com/contact.html">Contact</a>
+					<a href="https://www.narbonpatricia.com/faqs">FAQ</a>
 				</FooterElement>
 				<FooterDivider>|</FooterDivider>
 				<FooterElement>
@@ -25,6 +25,10 @@ const Footer = ({ location }) =>
 					<a href="https://www.narbonpatricia.com/privacy-policy.html">
 						Privacy Policy
 					</a>
+				</FooterElement>
+				<FooterDivider>|</FooterDivider>
+				<FooterElement>
+					<a href="https://www.narbonpatricia.com/contact.html">Contact</a>
 				</FooterElement>
 				<FooterDivider>|</FooterDivider>
 				<FooterElement>© 2020 Narbon</FooterElement>

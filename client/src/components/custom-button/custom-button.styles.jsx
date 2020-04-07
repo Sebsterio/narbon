@@ -63,9 +63,21 @@ const stripeStyles = css`
 		box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 	}
 `;
+const disabledStyles = css`
+	background: white;
+	border: 1px solid black;
+	color: black;
+	cursor: default;
+
+	&:active {
+		transform: none;
+	}
+`;
 
 const getButtonStyles = (props) =>
-	props.isGoogleSignIn
+	props.disabled
+		? disabledStyles
+		: props.isGoogleSignIn
 		? googleSignInStyles
 		: props.stripe
 		? stripeStyles
@@ -86,16 +98,15 @@ export const CustomButtonContainer = styled.button`
 	font-family: "Josefin Sans", "Open Sans", "Helvetica Neue", "Helvetica",
 		"sans-serif";
 	font-weight: bold;
-	display: flex;
+	display: grid;
 	justify-content: center;
+	align-content: center;
 	cursor: pointer;
 
 	color: white;
 	border: none;
 	background-size: 300% 100%;
 	transition: all 0.25s ease-in-out;
-
-	${getButtonStyles}
 
 	&:hover {
 		background-position: 100% 0;
@@ -110,4 +121,6 @@ export const CustomButtonContainer = styled.button`
 	&:focus {
 		outline: none;
 	}
+
+	${getButtonStyles}
 `;

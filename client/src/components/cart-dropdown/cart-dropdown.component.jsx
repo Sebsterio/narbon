@@ -29,6 +29,7 @@ export const CartDropdown = ({ cartItems, history, dispatch, hidden }) => (
 			)}
 		</CartItemsContainer>
 		<CartDropdownButton
+			disabled={!cartItems.length}
 			onClick={() => {
 				history.push("/checkout");
 				dispatch(toggleCartHidden());
