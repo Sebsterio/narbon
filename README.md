@@ -6,11 +6,14 @@ Online shop created with React and Node
 
 ## Features
 
-- Animated transitions between lazy-loaded routes (pre-loaded)
-- Sign-in with email or Google; access control to firestore
+- Sign-in with email or Google
 - Database accessed through a Google spreadsheet as GUI
 - Stripe payments
+- Animated transitions between lazy-loaded routes (pre-loaded)
+- Customizable products
+- Conditional shipping costs
 - Infinite scroll
+- PWA-optimized; responsive; cross-browser (except IE)
 
 ## Tech
 
@@ -29,14 +32,16 @@ $ npm run dev
 
 ### Deploy
 
-- Personalize Stripe keys, Firebase config, and Google spreadsheet URL
-- Uncomment EnforceHTTPS in `server.js` if not using a custom domain name
-
 ```
 $ heroku create <project_name>
 $ heroku config:set KEY=<your_stripe_secret_key>
 $ git push heroku master
 ```
+
+If reusing for another project:
+
+- Personalize Stripe keys, Firebase config, and Google spreadsheet URL
+- Uncomment EnforceHTTPS in `server.js`, unless using a custom domain name with a conflicting SSL cert.
 
 ## Acknowledgments
 
