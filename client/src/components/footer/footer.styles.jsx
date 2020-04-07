@@ -9,6 +9,7 @@ export const FooterContainer = styled.div`
 `;
 
 export const FooterContent = styled.div`
+	margin: 10px 0 5px 0;
 	width: 100%;
 	padding: 5px;
 	background: white;
@@ -39,10 +40,16 @@ export const FooterElement = styled.div`
 
 	@media screen and (max-width: 800px) {
 		line-height: 18px;
+		height: 18px;
 		margin: 0 5px;
+	}
+	@media screen and (max-width: 400px) {
+		line-height: 21px;
+		height: 21px;
 	}
 `;
 export const SocialIcon = styled.a`
+	height: 100%;
 	display: flex;
 	align-items: center;
 
