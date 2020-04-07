@@ -12,17 +12,17 @@ const Footer = ({ location }) =>
 		<FooterContainer>
 			<FooterContent>
 				<FooterElement>
-					<a href="https://www.narbonpatricia.com/faqs">FAQ</a>
+					<a href="https://www.narbonpatricia.com/faqs.html">FAQ</a>
 				</FooterElement>
 				<FooterDivider>|</FooterDivider>
 				<FooterElement>
-					<a href="https://www.narbonpatricia.com/terms-and-conditions.html">
+					<a href="https://www.narbonpatricia.com/termsandconditions.html">
 						Terms & Conditions
 					</a>
 				</FooterElement>
 				<FooterDivider>|</FooterDivider>
 				<FooterElement>
-					<a href="https://www.narbonpatricia.com/privacy-policy.html">
+					<a href="https://www.narbonpatricia.com/privacypolicy.html">
 						Privacy Policy
 					</a>
 				</FooterElement>
