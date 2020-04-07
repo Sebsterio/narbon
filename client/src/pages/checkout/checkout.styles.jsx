@@ -39,19 +39,65 @@ export const HeaderBlockContainer = styled.div`
 	}
 `;
 
-export const TotalContainer = styled.div`
-	margin-top: 30px;
+export const CheckoutFooterContainer = styled.div`
+	margin-top: 10px;
 	margin-left: auto;
-	font-size: 28px;
+	width: 220px;
+
+	div {
+		display: flex;
+		justify-content: space-between;
+	}
+`;
+
+export const ShippingLineContainer = styled.div`
+	margin-top: 10px;
+	width: 100%;
+
+	span,
+	select {
+		width: 49%;
+		height: 20px;
+		line-height: 20px;
+		font-size: 13px;
+
+		&:last-child {
+			text-align: right;
+		}
+	}
+`;
+
+export const Select = styled.select`
+	letter-spacing: 0.5px;
+	padding: 0 8px 0 8px;
+	display: flex;
+	font-family: "Josefin Sans", "Open Sans", "Helvetica Neue", "Helvetica",
+		"sans-serif";
+	font-weight: normal;
+	text-transform: uppercase;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	border-left: none;
+	border-right: none;
+	cursor: pointer;
+
+	&:hover {
+		transform: scale(1.01);
+	}
+`;
+
+export const TotalContainer = styled.div`
+	margin-top: 15px;
+	font-size: 24px;
 
 	@media screen and (max-width: 800px) {
-		font-size: 27px;
+		font-size: 21px;
 	}
 	@media screen and (max-width: 400px) {
 		font-size: 18px;
 	}
 `;
 export const ButtonContainer = styled.div`
-	margin-top: -22px;
-	margin-left: auto;
+	margin-top: -25px;
+	justify-content: center !important;
 `;

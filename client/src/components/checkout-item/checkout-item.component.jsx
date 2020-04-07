@@ -32,7 +32,7 @@ export const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
 					&#10095;
 				</div>
 			</QuantityContainer>
-			<TextContainer>{price}</TextContainer>
+			<TextContainer>&euro;{price}</TextContainer>
 			<RemoveButtonContainer onClick={() => clearItem(cartItem)}>
 				&#10005;
 			</RemoveButtonContainer>

@@ -11,13 +11,16 @@ export const CheckoutItemContainer = styled.div`
 	align-items: center;
 	border-bottom: 1px solid darkgrey;
 	font-size: 20px;
+	line-height: 20px;
 
 	@media screen and (max-width: 800px) {
 		font-size: 17px;
+		line-height: 17px;
 	}
 
 	@media screen and (max-width: 400px) {
 		font-size: 14px;
+		line-height: 14px;
 	}
 `;
 
