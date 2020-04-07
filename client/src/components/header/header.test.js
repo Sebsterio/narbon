@@ -14,9 +14,9 @@ describe("Header component", () => {
 		const mockProps = {
 			hidden: true,
 			currentUser: {
-				uid: "123"
+				uid: "123",
 			},
-			signOutStart: mockSignOutStart
+			signOutStart: mockSignOutStart,
 		};
 
 		wrapper = shallow(<Header {...mockProps} />);
@@ -27,48 +27,10 @@ describe("Header component", () => {
 	});
 
 	describe("if currentUser is present", () => {
-		it("should render sign out link", () => {
-			console.log(wrapper.find("OptionLink").debug());
-			expect(
-				wrapper
-					.find("OptionLink")
-					.at(1)
-					.text()
-			).toBe("SIGN OUT");
-		});
-
 		it("should call signOutStart method when link is clicked", () => {
-			wrapper
-				.find("OptionLink")
-				.at(1)
-				.simulate("click");
+			wrapper.find("OptionLink").at(1).simulate("click");
 
 			expect(mockSignOutStart).toHaveBeenCalled();
-		});
-	});
-
-	describe("if currentUser is null", () => {
-		it("should render sign in link", () => {
-			const mockProps = {
-				hidden: true,
-				currentUser: null,
-				signOutStart: mockSignOutStart
-			};
-
-			const newWrapper = shallow(<Header {...mockProps} />);
-
-			expect(
-				newWrapper
-					.find("OptionLink")
-					.at(1)
-					.text()
-			).toBe("SIGN IN");
-		});
-	});
-
-	describe("if hidden is true", () => {
-		it("should not render CartDropdown", () => {
-			expect(wrapper.exists(CartDropdown)).toBe(false);
 		});
 	});
 
@@ -77,7 +39,7 @@ describe("Header component", () => {
 			const mockProps = {
 				hidden: false,
 				currentUser: null,
-				signOutStart: mockSignOutStart
+				signOutStart: mockSignOutStart,
 			};
 
 			const newWrapper = shallow(<Header {...mockProps} />);
