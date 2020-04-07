@@ -33,6 +33,10 @@ select::-ms-expand {
 	display: none;
 }
 
+option {
+	font-weight: normal;
+}
+
 	.transition-enter {
 		opacity: 0 !important;
 	}

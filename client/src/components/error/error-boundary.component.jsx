@@ -2,8 +2,9 @@ import React from "react";
 
 import {
 	ErrorImageOverlay,
-	ErrorImageContainer,
-	ErrorImageText
+	ErrorDingbat,
+	ErrorImageHeading,
+	ErrorImageText,
 } from "./error.styles";
 
 class ErrorBoundary extends React.Component {
@@ -11,7 +12,7 @@ class ErrorBoundary extends React.Component {
 		super();
 
 		this.state = {
-			hasErrored: false
+			hasErrored: false,
 		};
 	}
 
@@ -28,8 +29,12 @@ class ErrorBoundary extends React.Component {
 		if (this.state.hasErrored) {
 			return (
 				<ErrorImageOverlay>
-					<ErrorImageContainer imageUrl="https://i.imgur.com/yW2W9SC.png" />
-					<ErrorImageText>Sorry this page is broken</ErrorImageText>
+					<ErrorDingbat>&#10005;</ErrorDingbat>
+					<ErrorImageHeading>Something went wrong...</ErrorImageHeading>
+					<ErrorImageText>
+						If you're using Internet Explorer, please update to a modern browser
+						to view this page.
+					</ErrorImageText>
 				</ErrorImageOverlay>
 			);
 		}
