@@ -23,7 +23,7 @@ export const CheckoutHeaderContainer = styled.div`
 	width: 100%;
 	height: 40px;
 	display: grid;
-	grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+	grid-template-columns: var(--checkout-layout);
 	grid-gap: 8px;
 	justify-items: center;
 	border-bottom: 1px solid darkgrey;

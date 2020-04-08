@@ -51,9 +51,6 @@ export const CheckoutPage = ({ cartItems, total }) => {
 				<HeaderBlockContainer>
 					<span>Price</span>
 				</HeaderBlockContainer>
-				<HeaderBlockContainer>
-					<span>Remove</span>
-				</HeaderBlockContainer>
 			</CheckoutHeaderContainer>
 			{cartItems.map((cartItem) => (
 				<CheckoutItem

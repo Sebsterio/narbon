@@ -11,6 +11,8 @@ export const GlobalStyle = createGlobalStyle`
 			--header-height: 100px;
 		}
 
+		--checkout-layout: 1fr 2fr 1fr 1fr 0.5fr
+
 	}
 	* {
 		box-sizing: border-box;
