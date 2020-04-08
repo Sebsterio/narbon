@@ -41,7 +41,6 @@ $ git push heroku master
 If reusing for another project:
 
 - Personalize Stripe keys, Firebase config, and Google spreadsheet URL
-- Uncomment EnforceHTTPS in `server.js`, unless using a custom domain name with a conflicting SSL cert.
 
 ## Acknowledgments
 
