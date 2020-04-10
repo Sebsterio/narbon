@@ -1,6 +1,6 @@
 {
 	"name": "narbon-store-server",
-	"homepage": "https://www.shop.narbonpatricia.com/",
+	"homepage": "https://shop.narbonpatricia.com/",
 	"version": "1.0.0",
 	"engines": {
 		"node": "10.16.0",

@@ -26,6 +26,7 @@ export const Wrapper = styled.div`
 
 export const Pics = styled.div`
 	width: 100%;
+	overflow-x: hidden;
 
 	@media screen and (max-width: 400px) {
 		padding-top: 30px;
@@ -33,6 +34,7 @@ export const Pics = styled.div`
 
 	img {
 		width: 100%;
+		cursor: pointer;
 	}
 `;
 
