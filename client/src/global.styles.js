@@ -1,14 +1,19 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 	body {
 		height: 100vh;
 		font-family: "Josefin Sans", "Open Sans", "Helvetica Neue", "Helvetica", "sans-serif";
-
-		--header-height: 60px
-
+		font-size: 16px;
+		
+		--header-height: 90px
+		--banner-height: 30px
+		--banner-font-size: 0.8rem
+		
 		@media screen and (min-width: 800px) {
-			--header-height: 100px;
+			--header-height: 140px;
+			--banner-height: 40px
+			--banner-font-size: 1rem
 		}
 
 		--checkout-layout: 1fr 2fr 1fr 1fr 0.5fr

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import CustomButton from "../../components/custom-button/custom-button.component";
+import styled from 'styled-components';
+import CustomButton from '../../components/custom-button/custom-button.component';
 
 export const ProductPageContainer = styled.div`
 	min-height: 100vh;
@@ -39,19 +39,15 @@ export const Pics = styled.div`
 `;
 
 export const InfoDock = styled.div`
-	width: ${({ collapsed }) => (collapsed ? "0" : "var(--info-width)")};
+	width: ${({ collapsed }) => (collapsed ? '0' : 'var(--info-width)')};
 	transition: width 400ms ease;
 `;
 
 export const InfoContainer = styled.div`
 	position: fixed;
 	width: var(--info-width);
-	height: calc(100vh - 60px);
+	height: calc(100vh - var(--header-height));
 	overflow: auto;
-
-	@media screen and (min-width: 800px) {
-		height: calc(100vh - 100px);
-	}
 `;
 
 export const Info = styled.div`
@@ -62,7 +58,7 @@ export const Info = styled.div`
 	grid-gap: 16px;
 	transition: all 400ms ease;
 
-	transform: translateX(${({ collapsed }) => (collapsed ? "-100%" : "0")});
+	transform: translateX(${({ collapsed }) => (collapsed ? '-100%' : '0')});
 
 	span {
 		display: block;
@@ -105,8 +101,7 @@ export const Select = styled.select`
 	padding: 0 8px 0 8px;
 	display: flex;
 	font-size: 15px;
-	font-family: "Josefin Sans", "Open Sans", "Helvetica Neue", "Helvetica",
-		"sans-serif";
+	font-family: 'Josefin Sans', 'Open Sans', 'Helvetica Neue', 'Helvetica', 'sans-serif';
 	font-weight: bold;
 	text-transform: uppercase;
 	justify-content: center;

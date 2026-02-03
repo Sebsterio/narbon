@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const HeaderContainer = styled.div`
 	z-index: 9999;
@@ -11,9 +11,21 @@ export const HeaderContainer = styled.div`
 	height: var(--header-height);
 `;
 
+export const HeaderBanner = styled.div`
+	width: 100%;
+	height: var(--banner-height);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	color: white;
+	font-size: var(--banner-font-size);
+	font-family: 'Courier New', Courier, monospace;
+`;
+
 export const HeaderWrap = styled.div`
 	position: relative;
-	height: 100%;
+	height: calc(var(--header-height) - var(--banner-height));
 	max-width: 1200px;
 	margin: auto;
 	padding: 0 6px;
@@ -71,4 +83,4 @@ export const OptionLink = styled(NavLink)`
 	}
 `;
 
-OptionLink.displayName = "OptionLink";
+OptionLink.displayName = 'OptionLink';
